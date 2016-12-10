@@ -155,9 +155,11 @@ class InputHandler extends React.Component {
   }
 
   render() {
-    // TODO: Render the input methods
+    // TODO: control the add button disabling
+    var disabledButton = true;
+
     const newProductInput = <input className='new-item' type="text" onChange={this.props.inputChanged}/>;
-    const newProductAddButton = <button className='add-product' onClick={this.props.addGroceryItem}>Add new Product</button>;
+    const newProductAddButton = <button disabled={disabledButton} className='add-product' onClick={this.props.addGroceryItem}>Add new Product</button>;
     const clearListButton = <button className='clear-list' onClick={this.props.clearList}>Clear the List</button>;
     return (
       <div className="InputStuff"> 

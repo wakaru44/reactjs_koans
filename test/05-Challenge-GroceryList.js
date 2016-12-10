@@ -108,4 +108,21 @@ describe("05 - Challenge - Grocery List", () => {
       assert.equal(groceryItem.props.className, "completed", "GroceriesListItem should be completed");
     });
   });
+
+  describe("Task #4 - Extra 2 - Disabling add button and adding test", () => {
+
+    beforeEach ( () => {
+      var elem = document.createElement("div");
+      elem = document.body.appendChild(elem);
+      component = React.render(React.createElement(GroceryListPart4),elem);
+    });
+
+    it("Should have the add button disabled at start", () => {
+      let newProductAddButton = React.addons.TestUtils.findRenderedDOMComponentWithClass(component, "add-product");
+      //React.addons.TestUtils.Simulate.click(newProductAddButton.getDOMNode());
+      //let groceryListItems = React.addons.TestUtils.scryRenderedDOMComponentsWithTag(component, "li");
+
+      assert.equal(newProductAddButton.disabled, true, "It should be disabled at start");
+    });
+  });
 });
