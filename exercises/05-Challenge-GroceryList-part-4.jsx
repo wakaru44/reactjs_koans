@@ -51,6 +51,8 @@ class GroceryList extends React.Component {
     this.addGroceryItem = this.addGroceryItem.bind(this);
     this.clearList = this.clearList.bind(this);
     this.inputChanged = this.inputChanged.bind(this);
+    //this.toggleGroceryCompleteness = this.toggleGroceryCompleteness.bind(this);
+    // QUESTION: Maybe the above method is binded when passed as props andnot here? why?
   }
 
   inputChanged(event) {
@@ -59,7 +61,7 @@ class GroceryList extends React.Component {
 
   addGroceryItem() {
     if(this.state.newGroceryName) {
-      let newGroceryItem = { name: this.state.newGroceryName };
+      let newGroceryItem = { name: this.state.newGroceryName, completed:false};
       this.setState({
         groceries: this.state.groceries.concat([newGroceryItem])
       });
@@ -70,10 +72,33 @@ class GroceryList extends React.Component {
     this.setState({groceries: []});
   }
 
+  toggleHelper(toggleThis){
+    if (toggleThis){
+      return false;
+      console.log("Making Inconplete");
+    }else{
+      return true;
+      console.log("Making It conplete");
+    }
+  }
+
   // Fill the definition of the following method to allow completing each item
   // Hint 1: Pay attention to the element's index on the list.
   toggleGroceryCompleteness(groceryIndex) {
     // Put your code here
+    // Enable/Disable the completeness flag on an element
+    var newState = this.state; 
+    var toggledElement = newState.groceries[groceryIndex];
+    newState.groceries[groceryIndex] = {
+      name: toggledElement.name,
+      completed: this.toggleHelper(toggledElement.completed)
+    }
+    //console.log("Debugging");
+    //console.log(groceryIndex);
+    //console.log(this.state);
+    //console.log("newState");
+    //console.log(newState);
+    this.setState(newState);
   }
 
   render() {
