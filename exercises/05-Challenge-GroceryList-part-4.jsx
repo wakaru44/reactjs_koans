@@ -115,18 +115,20 @@ class GroceryList extends React.Component {
       );
     }
 
-    newProductInput = <input className='new-item' type="text" onChange={this.inputChanged}/>;
-    newProductAddButton = <button className='add-product' onClick={this.addGroceryItem}>Add new Product</button>;
-    clearListButton = <button className='clear-list' onClick={this.clearList}>Clear the List</button>;
+    //newProductInput = <input className='new-item' type="text" onChange={this.inputChanged}/>;
+    //newProductAddButton = <button className='add-product' onClick={this.addGroceryItem}>Add new Product</button>;
+    //clearListButton = <button className='clear-list' onClick={this.clearList}>Clear the List</button>;
 
     return (
       <div>
         <ul>
           {groceriesComponents}
         </ul>
-        {newProductInput}
-        {newProductAddButton}
-        {clearListButton}
+        <InputHandler 
+          inputChanged={this.inputChanged}
+          addGroceryItem={this.addGroceryItem}
+          clearList={this.clearList}
+        />
       </div>
     );
   }
@@ -143,6 +145,26 @@ class GroceryListItem extends React.Component {
       <li className={completed} onClick={this.props.onComplete}>
         {this.props.grocery.name}
       </li>
+    );
+  }
+}
+
+class InputHandler extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  render() {
+    // TODO: Render the input methods
+    const newProductInput = <input className='new-item' type="text" onChange={this.props.inputChanged}/>;
+    const newProductAddButton = <button className='add-product' onClick={this.props.addGroceryItem}>Add new Product</button>;
+    const clearListButton = <button className='clear-list' onClick={this.props.clearList}>Clear the List</button>;
+    return (
+      <div className="InputStuff"> 
+        {newProductInput}
+        {newProductAddButton}
+        {clearListButton}
+      </div>
     );
   }
 }
