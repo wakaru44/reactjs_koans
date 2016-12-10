@@ -124,5 +124,16 @@ describe("05 - Challenge - Grocery List", () => {
 
       assert.equal(newProductAddButton.disabled, true, "It should be disabled at start");
     });
+
+    it("Should become enabled on input", () => {
+      let newProductInput = React.addons.TestUtils.findRenderedDOMComponentWithClass(component, "new-item");
+      let newProductAddButton = React.addons.TestUtils.findRenderedDOMComponentWithClass(component, "add-product");
+      React.addons.TestUtils.Simulate.change(newProductInput.getDOMNode(), { target: {value: 'Oranges' }});
+      let newProductAddButtonEnabled = React.addons.TestUtils.findRenderedDOMComponentWithClass(component,"add-product");
+      //React.addons.TestUtils.Simulate.click(newProductAddButton.getDOMNode());
+      //let groceryListItems = React.addons.TestUtils.scryRenderedDOMComponentsWithTag(component, "li");
+
+      assert.equal(newProductAddButton.disabled, true, "It should be disabled at start");
+    });
   });
 });
